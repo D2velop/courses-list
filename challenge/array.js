@@ -23,9 +23,10 @@ export function buildArray(filePath) {}
  * Get the nth element from a specific weight given as parameter
  * @param {Array} list
  * @param {Number} weight
+ * @param {Number} position
  * @returns {Object} the found element or null if no element were found
  */
- export function searchNthFromWeight(list, weight) {}
+ export function searchNthFromWeight(list, weight, position) {}
 
 /**
  * Get the last element from a specific weight given as parameter
