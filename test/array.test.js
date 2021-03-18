@@ -213,13 +213,13 @@ describe("Array list", () => {
   describe("Insert a new element at nth position in the array", () => {
     
     it("should insert the new element at the nth position", () => {
-      arrayList.insertEnd(arrayFixture, "five", 5, 3);
+      arrayList.insertNth(arrayFixture, "five", 5, 3);
       expect(arrayList[2]).toEqual({ label: "five", weight: 5 });
     });
 
     it("should change the length of the array", () => {
       const lengthBefore = arrayList.length;
-      arrayList.insertEnd(arrayFixture, "five", 5, 3);
+      arrayList.insertNth(arrayFixture, "five", 5, 3);
       expect(arrayList.length).toEqual(lengthBefore + 1);
     });
   });
