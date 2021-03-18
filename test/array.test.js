@@ -116,7 +116,9 @@ describe("Array list", () => {
 
   describe("Sort an array based on weight value", () => {
     it("should sort the full array", () => {
-      expect(arrayList.sortOnWeight(arrayFixture)).toEqual([
+      arrayList.sortOnWeight(arrayFixture);
+
+      expect(arrayFixture).toEqual([
         { label: "two", weight: 1 },
         { label: "three", weight: 11 },
         { label: "six", weight: 18 },
@@ -127,31 +129,32 @@ describe("Array list", () => {
     });
 
     it("should sort a two elements array", () => {
-      expect(
-        arrayList.sortOnWeight([
-          { label: "two", weight: 30 },
-          { label: "four", weight: 1 },
-        ])
-      ).toEqual([
+      const twoElemArray = [
+        { label: "two", weight: 30 },
+        { label: "four", weight: 1 },
+      ];
+
+      arrayList.sortOnWeight(twoElemArray);
+
+      expect(twoElemArray).toEqual([
         { label: "four", weight: 1 },
         { label: "two", weight: 30 },
       ]);
     });
 
-    it("should sort an array with one element", () => {
-      expect(arrayList.sortOnWeight([{ label: "two", weight: 30 }])).toEqual([
-        { label: "two", weight: 30 },
-      ]);
-    });
-
     it("should sort an empty array", () => {
-      expect(arrayList.sortOnWeight([])).toEqual([]);
+      const emptyArray = [];
+      arrayList.sortOnWeight(emptyArray)
+
+      expect(emptyArray).toEqual([]);
     });
   });
 
   describe("Sort an array based on weight value and at weight egual sort on label", () => {
     it("should sort the full array", () => {
-      expect(arrayList.sortOnWeightAndLabel(arrayFixture)).toEqual([
+      arrayList.sortOnWeightAndLabel(arrayFixture);
+
+      expect(arrayList).toEqual([
         { label: "two", weight: 1 },
         { label: "three", weight: 11 },
         { label: "six", weight: 18 },
@@ -162,25 +165,23 @@ describe("Array list", () => {
     });
 
     it("should sort a two elements array", () => {
-      expect(
-        arrayList.sortOnsortOnWeightAndLabelWeight([
-          { label: "two", weight: 1 },
-          { label: "four", weight: 1 },
-        ])
-      ).toEqual([
+      const twoElemArray = [
+        { label: "two", weight: 1 },
+        { label: "four", weight: 1 },
+      ];
+      arrayList.sortOnsortOnWeightAndLabelWeight(twoElemArray);
+
+      expect(twoElemArray).toEqual([
         { label: "four", weight: 1 },
         { label: "two", weight: 1 },
       ]);
     });
 
-    it("should sort an array with one element", () => {
-      expect(arrayList.sortOnWeightAndLabel([{ label: "two", weight: 30 }])).toEqual([
-        { label: "two", weight: 30 },
-      ]);
-    });
-
     it("should sort an empty array", () => {
-      expect(arrayList.sortOnWeightAndLabel([])).toEqual([]);
+      const emptyArray = [];
+      arrayList.sortOnWeightAndLabel(emptyArray)
+
+      expect(emptyArray).toEqual([]);
     });
   });
 
@@ -200,7 +201,10 @@ describe("Array list", () => {
   describe("Insert a new element at last position in the array", () => {
     it("should insert the new element at last position", () => {
       arrayList.insertEnd(arrayFixture, "five", 5);
-      expect(arrayList[arrayList.length - 1]).toEqual({ label: "five", weight: 5 });
+      expect(arrayList[arrayList.length - 1]).toEqual({
+        label: "five",
+        weight: 5,
+      });
     });
 
     it("should change the length of the array", () => {
@@ -211,7 +215,6 @@ describe("Array list", () => {
   });
 
   describe("Insert a new element at nth position in the array", () => {
-    
     it("should insert the new element at the nth position", () => {
       arrayList.insertNth(arrayFixture, "five", 5, 3);
       expect(arrayList[2]).toEqual({ label: "five", weight: 5 });
@@ -225,7 +228,6 @@ describe("Array list", () => {
   });
 
   describe("Remove an element from its weight and label", () => {
-    
     it("should return the former position of the remove element", () => {
       expect(arrayList.removeFirst(arrayFixture, "four", 30)).toEqual(3);
     });
@@ -242,7 +244,6 @@ describe("Array list", () => {
   });
 
   describe("Remove all elements from theire weight", () => {
-    
     it("should return the number of removed elements", () => {
       expect(arrayList.removeAll(arrayFixture, 23)).toEqual(2);
     });
