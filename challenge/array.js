@@ -109,6 +109,6 @@ export function buildArray(filePath) {}
  * Remove all elements from a specific weight
  * @param {Array} list
  * @param {Number} weight
- * @returns {Number} the number of removed element, -1 if no element is removed
+ * @returns {Number} the number of removed element, 0 if no element is removed
  */
  export function removeAll(list, weight) {}
