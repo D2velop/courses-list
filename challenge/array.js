@@ -63,7 +63,6 @@ export function buildArray(filePath) {}
 /**
  * Sort an array based on weight value and at weight egual sort on label
  * @param {Array} list
- * @param {Number} weight
  */
  export function sortOnWeightAndLabel(list) {}
 
