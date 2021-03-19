@@ -7,7 +7,7 @@
  * @param {String} filePath
  * @returns {Object} the newly built linked list reference
  */
-export function buildArray(filePath) {}
+export function buildLinkedList(filePath) {}
 
 // ---- Search ----
 
