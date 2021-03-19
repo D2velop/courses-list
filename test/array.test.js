@@ -253,9 +253,9 @@ describe("Array list", () => {
     });
 
     it("should change the length of the array", () => {
-      const lengthBefore = arrayList.length;
+      const lengthBefore = arrayFixture.length;
       const nbRemoved = arrayList.removeAll(arrayFixture, 23);
-      expect(arrayList.length).toEqual(lengthBefore - nbRemoved);
+      expect(arrayFixture.length).toEqual(lengthBefore - nbRemoved);
     });
   });
 });
