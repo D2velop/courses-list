@@ -252,6 +252,14 @@ describe("Array list", () => {
       expect(arrayList.removeAll(arrayFixture, 99)).toEqual(0);
     });
 
+    it("should remove targeted element", () => {
+      const weightToRemove = 23;
+      arrayList.removeAll(arrayFixture, weightToRemove)
+      expect(arrayFixture.findIndex((elem) => {
+        return elem.weight === weightToRemove
+      })).toEqual(-1);
+    });
+
     it("should change the length of the array", () => {
       const lengthBefore = arrayFixture.length;
       const nbRemoved = arrayList.removeAll(arrayFixture, 23);
