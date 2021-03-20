@@ -1,4 +1,4 @@
-import * as linkedList from "../challenge/circularLinkedList";
+import * as linkedListService from "../challenge/circularLinkedList";
 
 describe("Circular linked list", () => {
   let circularLinkedList = {};
@@ -42,17 +42,17 @@ describe("Circular linked list", () => {
 
   describe("build circular linked list function", () => {
     it("should build a new object", () => {
-      const builtList = linkedList.buildLinkedList("./data/1K.json");
+      const builtList = linkedListService.buildLinkedList("./data/1K.json");
       expect(typeof builtList === "object").toBe(true);
     });
 
     it("should build a new list with length", () => {
-      const builtList = linkedList.buildLinkedList("./data/1K.json");
+      const builtList = linkedListService.buildLinkedList("./data/1K.json");
       expect(builtList.length).toEqual(1000);
     });
 
     it("should build a new list with well formated element", () => {
-      const builtList = linkedList.buildLinkedList("./data/1K.json");
+      const builtList = linkedListService.buildLinkedList("./data/1K.json");
       expect(builtList.head.value).toEqual({
         weight: 32,
         label: "nine",
@@ -60,36 +60,34 @@ describe("Circular linked list", () => {
     });
 
     it("should build a circular list", () => {
-      const builtList = linkedList.buildLinkedList("./data/1K.json");
+      const builtList = linkedListService.buildLinkedList("./data/1K.json");
       expect(builtList.tail.next).toEqual(firstElement);
     });
   });
 
-
-
   describe("Insert a new element at first position in the list", () => {
     it("should insert the new element at first position", () => {
-      linkedList.insertHead(circularLinkedList, "five", 5);
+      linkedListService.insertHead(circularLinkedList, "five", 5);
       const insertedElement = {
         label: "five",
         weight: 5,
         next: firstElement,
       };
-      
+
       expect(circularLinkedList.head).toEqual(insertedElement);
       expect(circularLinkedList.tail.next).toEqual(insertedElement);
     });
 
     it("should change the length of the array", () => {
       const lengthBefore = circularLinkedList.length;
-      linkedList.insertHead(circularLinkedList, "five", 5);
+      linkedListService.insertHead(circularLinkedList, "five", 5);
       expect(circularLinkedList.length).toEqual(lengthBefore + 1);
     });
   });
 
   describe("Insert a new element at last position in the list", () => {
     it("should insert the new element at last position", () => {
-      linkedList.insertTail(circularLinkedList, "five", 5);
+      linkedListService.insertTail(circularLinkedList, "five", 5);
       expect(circularLinkedList.tail).toEqual({
         label: "five",
         weight: 5,
@@ -99,9 +97,8 @@ describe("Circular linked list", () => {
 
     it("should change the length of the list", () => {
       const lengthBefore = circularLinkedList.length;
-      linkedList.insertTail(circularLinkedList, "five", 5);
+      linkedListService.insertTail(circularLinkedList, "five", 5);
       expect(circularLinkedList.length).toEqual(lengthBefore + 1);
     });
   });
-
 });

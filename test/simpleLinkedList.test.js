@@ -1,4 +1,4 @@
-import * as linkedList from "../challenge/simpleLinkedList";
+import * as linkedListService from "../challenge/simpleLinkedList";
 
 describe("Simple linked list", () => {
   let simpleLinkedList = {};
@@ -34,17 +34,17 @@ describe("Simple linked list", () => {
 
   describe("build simple linked list function", () => {
     it("should build a new object", () => {
-      const builtList = linkedList.buildLinkedList("./data/1K.json");
+      const builtList = linkedListService.buildLinkedList("./data/1K.json");
       expect(typeof builtList === "object").toBe(true);
     });
 
     it("should build a new list with length", () => {
-      const builtList = linkedList.buildLinkedList("./data/1K.json");
+      const builtList = linkedListService.buildLinkedList("./data/1K.json");
       expect(builtList.length).toEqual(1000);
     });
 
     it("should build a new list with well formated element", () => {
-      const builtList = linkedList.buildLinkedList("./data/1K.json");
+      const builtList = linkedListService.buildLinkedList("./data/1K.json");
       expect(builtList.head.value).toEqual({
         weight: 32,
         label: "nine",
@@ -54,82 +54,82 @@ describe("Simple linked list", () => {
 
   describe("search one from label", () => {
     it("should return an existing element", () => {
-      expect(linkedList.searchOneFromLabel(simpleLinkedList, "two")).toEqual(
+      expect(linkedListService.searchOneFromLabel(simpleLinkedList, "two")).toEqual(
         secondElement
       );
     });
 
     it("should return null if no element was found", () => {
       expect(
-        linkedList.searchOneFromLabel(simpleLinkedList, "not exist")
+        linkedListService.searchOneFromLabel(simpleLinkedList, "not exist")
       ).toBeNull();
     });
   });
 
   describe("search nth from weight", () => {
     it("should return an existing element", () => {
-      expect(linkedList.searchNthFromWeight(simpleLinkedList, 23, 2)).toEqual(
+      expect(linkedListService.searchNthFromWeight(simpleLinkedList, 23, 2)).toEqual(
         lastElement
       );
     });
 
     it("should return null if not enough elements", () => {
       expect(
-        linkedList.searchNthFromWeight(simpleLinkedList, 23, 3)
+        linkedListService.searchNthFromWeight(simpleLinkedList, 23, 3)
       ).toBeNull();
     });
 
     it("should return null if element does not exist", () => {
-      expect(linkedList.searchNthFromWeight(simpleLinkedList, 0, 1)).toBeNull();
+      expect(linkedListService.searchNthFromWeight(simpleLinkedList, 0, 1)).toBeNull();
     });
   });
 
   describe("search last from weight", () => {
     it("should return the second(last) occurence of weight 23", () => {
-      expect(linkedList.searchLastFromWeight(simpleLinkedList, 23)).toEqual(
+      expect(linkedListService.searchLastFromWeight(simpleLinkedList, 23)).toEqual(
         lastElement
       );
     });
 
     it("should return the only occurence of weight 1", () => {
-      expect(linkedList.searchLastFromWeight(simpleLinkedList, 1)).toEqual(
+      expect(linkedListService.searchLastFromWeight(simpleLinkedList, 1)).toEqual(
         secondElement
       );
     });
 
     it("should return null if no element was found", () => {
-      expect(linkedList.searchLastFromWeight(simpleLinkedList, 42)).toBeNull();
+      expect(linkedListService.searchLastFromWeight(simpleLinkedList, 42)).toBeNull();
     });
   });
 
   describe("search all from weight", () => {
     it("should return all occurences of weight 23", () => {
-      expect(linkedList.searchAllFromWeight(simpleLinkedList, 23)).toEqual([
+      expect(linkedListService.searchAllFromWeight(simpleLinkedList, 23)).toEqual([
         firstElement,
         lastElement,
       ]);
     });
 
     it("should return the only occurence of weight 1", () => {
-      expect(linkedList.searchAllFromWeight(simpleLinkedList, 1)).toEqual([
+      expect(linkedListService.searchAllFromWeight(simpleLinkedList, 1)).toEqual([
         secondElement,
       ]);
     });
 
     it("should return an empty array if no element was found", () => {
-      expect(linkedList.searchAllFromWeight(simpleLinkedList, 42)).toEqual([]);
+      expect(linkedListService.searchAllFromWeight(simpleLinkedList, 42)).toEqual([]);
     });
   });
 
   describe("Get the nth element", () => {
     it("should return the existing element", () => {
-      expect(linkedList.searchNthElement(simpleLinkedList, 2)).toEqual(
+      expect(linkedListService.searchNthElement(simpleLinkedList, 2)).toEqual(
         secondElement
       );
     });
 
     it("should return null if no element was found", () => {
-      expect(linkedList.searchNthElement(simpleLinkedList, 42)).toBeNull();
+      expect(linkedListService.searchNthElement(simpleLinkedList, 42)).toBeNull();
     });
   });
 
@@ -140,26 +140,26 @@ describe("Simple linked list", () => {
         tail: thirdElement,
         length: 6,
       };
-      linkedList.sortOnWeight(simpleLinkedList);
+      linkedListService.sortOnWeight(simpleLinkedList);
       expect(simpleLinkedList).toEqual(expectedList);
     });
 
     it("should sort a list with one element", () => {
       const list = [{ label: "two", weight: 30, next: null }];
-      linkedList.sortOnWeight(list);
+      linkedListService.sortOnWeight(list);
       expect(list).toEqual([{ label: "two", weight: 30, next: null }]);
     });
 
     it("should sort an empty list", () => {
       const list = [];
-      linkedList.sortOnWeight(list);
+      linkedListService.sortOnWeight(list);
       expect(list).toEqual([]);
     });
   });
 
   describe("Insert a new element at first position in the list", () => {
     it("should insert the new element at first position", () => {
-      linkedList.insertHead(simpleLinkedList, "five", 5);
+      linkedListService.insertHead(simpleLinkedList, "five", 5);
       expect(simpleLinkedList.head).toEqual({
         label: "five",
         weight: 5,
@@ -169,14 +169,14 @@ describe("Simple linked list", () => {
 
     it("should change the length of the array", () => {
       const lengthBefore = simpleLinkedList.length;
-      linkedList.insertHead(simpleLinkedList, "five", 5);
+      linkedListService.insertHead(simpleLinkedList, "five", 5);
       expect(simpleLinkedList.length).toEqual(lengthBefore + 1);
     });
   });
 
   describe("Insert a new element at last position in the list", () => {
     it("should insert the new element at last position", () => {
-      linkedList.insertTail(simpleLinkedList, "five", 5);
+      linkedListService.insertTail(simpleLinkedList, "five", 5);
       expect(simpleLinkedList.tail).toEqual({
         label: "five",
         weight: 5,
@@ -186,14 +186,14 @@ describe("Simple linked list", () => {
 
     it("should change the length of the list", () => {
       const lengthBefore = simpleLinkedList.length;
-      linkedList.insertTail(simpleLinkedList, "five", 5);
+      linkedListService.insertTail(simpleLinkedList, "five", 5);
       expect(simpleLinkedList.length).toEqual(lengthBefore + 1);
     });
   });
 
   describe("Insert a new element at nth position in the list", () => {
     it("should insert the new element at the nth position", () => {
-      linkedList.insertNth(simpleLinkedList, "five", 5, 2);
+      linkedListService.insertNth(simpleLinkedList, "five", 5, 2);
       const insertedElement = simpleLinkedList.head.next;
       expect(insertedElement).toEqual({
         label: "five",
@@ -204,14 +204,14 @@ describe("Simple linked list", () => {
 
     it("should change the length of the list", () => {
       const lengthBefore = simpleLinkedList.length;
-      linkedList.insertNth(simpleLinkedList, "five", 5, 3);
+      linkedListService.insertNth(simpleLinkedList, "five", 5, 3);
       expect(simpleLinkedList.length).toEqual(lengthBefore + 1);
     });
   });
 
   describe("Insert a new element in the list", () => {
     it("should insert the new element in the list", () => {
-      linkedList.insert(simpleLinkedList, "five", 5);
+      linkedListService.insert(simpleLinkedList, "five", 5);
       success =
         simpleLinkedList.head ===
           { value: "five", weight: 5, next: firstElement } ||
@@ -222,92 +222,92 @@ describe("Simple linked list", () => {
 
     it("should change the length of the list", () => {
       const lengthBefore = simpleLinkedList.length;
-      linkedList.insert(simpleLinkedList, "five", 5);
+      linkedListService.insert(simpleLinkedList, "five", 5);
       expect(simpleLinkedList.length).toEqual(lengthBefore + 1);
     });
   });
 
   describe("Remove all elements from theire weight", () => {
     it("should return the number of removed elements", () => {
-      expect(linkedList.removeAll(simpleLinkedList, 23)).toEqual(2);
+      expect(linkedListService.removeAll(simpleLinkedList, 23)).toEqual(2);
     });
 
     it("should return 0 if no element was removed", () => {
-      expect(linkedList.removeAll(simpleLinkedList, 99)).toEqual(-1);
+      expect(linkedListService.removeAll(simpleLinkedList, 99)).toEqual(-1);
     });
 
     it("should remove elements", () => {
-      linkedList.removeAll(simpleLinkedList, 23);
+      linkedListService.removeAll(simpleLinkedList, 23);
       expect(simpleLinkedList.head).toEqual(secondElement);
       expect(simpleLinkedList.tail).toEqual(fiftElement);
     });
 
     it("should change the length of the array", () => {
       const lengthBefore = simpleLinkedList.length;
-      const nbRemoved = linkedList.removeAll(simpleLinkedList, 23);
+      const nbRemoved = linkedListService.removeAll(simpleLinkedList, 23);
       expect(simpleLinkedList.length).toEqual(lengthBefore - nbRemoved);
     });
   });
 
   describe("Remove the first element", () => {
     it("should return the new list size", () => {
-      expect(linkedList.removeHead(simpleLinkedList)).toEqual(5);
+      expect(linkedListService.removeHead(simpleLinkedList)).toEqual(5);
     });
 
     it("should return 0 if the list is empty", () => {
-      expect(linkedList.removeHead({ head: null, length: 0 })).toEqual(0);
+      expect(linkedListService.removeHead({ head: null, length: 0 })).toEqual(0);
     });
 
     it("should remove element", () => {
-      linkedList.removeHead(simpleLinkedList);
+      linkedListService.removeHead(simpleLinkedList);
       expect(simpleLinkedList.head).toEqual(secondElement);
     });
 
     it("should change the length of the list", () => {
       const lengthBefore = simpleLinkedList.length;
-      linkedList.removeHead(simpleLinkedList);
+      linkedListService.removeHead(simpleLinkedList);
       expect(simpleLinkedList.length).toEqual(lengthBefore - 1);
     });
   });
 
   describe("Remove the last element", () => {
     it("should return the new list size", () => {
-      expect(linkedList.removeTail(simpleLinkedList)).toEqual(5);
+      expect(linkedListService.removeTail(simpleLinkedList)).toEqual(5);
     });
 
     it("should return 0 if the list is empty", () => {
-      expect(linkedList.removeTail({ tail: null, length: 0 })).toEqual(0);
+      expect(linkedListService.removeTail({ tail: null, length: 0 })).toEqual(0);
     });
 
     it("should remove element", () => {
-      linkedList.removeTail(simpleLinkedList);
+      linkedListService.removeTail(simpleLinkedList);
       expect(simpleLinkedList.tail).toEqual(fiftElement);
     });
 
     it("should change the length of the list", () => {
       const lengthBefore = simpleLinkedList.length;
-      linkedList.removeTail(simpleLinkedList);
+      linkedListService.removeTail(simpleLinkedList);
       expect(simpleLinkedList.length).toEqual(lengthBefore - 1);
     });
   });
 
   describe("Remove the nth element", () => {
     it("should return the new list size", () => {
-      expect(linkedList.removeNth(simpleLinkedList), 2).toEqual(5);
+      expect(linkedListService.removeNth(simpleLinkedList), 2).toEqual(5);
     });
 
     it("should return 0 if the list is empty", () => {
-      expect(linkedList.removeNth({ head: null, length: 0 }, 2)).toEqual(0);
+      expect(linkedListService.removeNth({ head: null, length: 0 }, 2)).toEqual(0);
     });
 
     it("should remove element", () => {
-      linkedList.removeNth(simpleLinkedList, 2);
+      linkedListService.removeNth(simpleLinkedList, 2);
       expect(simpleLinkedList.head.next).toEqual(thirdElement);
     });
 
     it("should change the length of the list", () => {
       const lengthBefore = simpleLinkedList.length;
-      linkedList.removeNth(simpleLinkedList);
+      linkedListService.removeNth(simpleLinkedList);
       expect(simpleLinkedList.length).toEqual(lengthBefore - 1);
     });
   });
