@@ -8,7 +8,7 @@ You can find data under the **data** directory. It holds different data files wi
 ---
 ## Challenge
 
-In this challenge you have to manipulate all list form. You have to **fork** this projet and add your code under a **challenge directory**. When the challenge is finished, you submit your solution through a **pull request** from **your fork to this repository**.
+In this challenge you have to manipulate all list form. You have to **clone** this projet and add your code under the **challenge directory**. When the challenge is finished, you submit your solution through a **new branch**.
 
 For this challenge all elements must be to the following type:
 

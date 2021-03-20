@@ -118,7 +118,6 @@ export function buildArray(filePath) {
 /**
  * Sort an array based on weight value and at weight egual sort on label
  * @param {Array} list
- * @param {Number} weight
  */
  export function sortOnWeightAndLabel(list) {
    list.sort((element, nextElement) => element.weight - nextElement.weight || element.label.localeCompare(nextElement.label));

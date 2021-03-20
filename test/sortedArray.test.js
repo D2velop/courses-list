@@ -56,7 +56,9 @@ describe("Sorted array list", () => {
 
   describe("Sort an array based on weight value", () => {
     it("should sort the full array", () => {
-      expect(arrayList.sortOnWeight(arrayFixture)).toEqual([
+      arrayList.sortOnWeight(arrayFixture);
+      
+      expect(arrayFixture).toEqual([
         { label: "two", weight: 1 },
         { label: "three", weight: 11 },
         { label: "six", weight: 18 },
@@ -67,13 +69,19 @@ describe("Sorted array list", () => {
     });
 
     it("should sort an array with one element", () => {
-      expect(arrayList.sortOnWeight([{ label: "two", weight: 30 }])).toEqual([
+      const oneElemArray = [{ label: "two", weight: 30 }];
+      arrayList.sortOnWeight(oneElemArray);
+
+      expect().toEqual([
         { label: "two", weight: 30 },
       ]);
     });
 
     it("should sort an empty array", () => {
-      expect(arrayList.sortOnWeight([])).toEqual([]);
+      const emptyArray = [];
+      arrayList.sortOnWeight(emptyArray);
+
+      expect(emptyArray).toEqual([]);
     });
   });
 
@@ -128,9 +136,9 @@ describe("Sorted array list", () => {
     });
 
     it("should change the length of the array", () => {
-      const lengthBefore = arrayList.length;
+      const lengthBefore = arrayFixture.length;
       const nbRemoved = arrayList.removeAll(arrayFixture, 23);
-      expect(arrayList.length).toEqual(lengthBefore - nbRemoved);
+      expect(arrayFixture.length).toEqual(lengthBefore - nbRemoved);
     });
   });
 });
