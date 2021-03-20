@@ -3,7 +3,7 @@
 // ---- INIT ----
 import fs from 'fs';
 import sort from './fusionSort';
-
+import {isEqual, removeEach} from './helpers';
 /**
  * Build an array from a given file path
  * @param {String} filePath
@@ -182,7 +182,7 @@ export function buildArray(filePath) {
     for(let i = initialLength; i > 0; i--){
         list[i] = list[i-1];
     }
-    list[position-1]=jsonAdd;
+    list[position-1] = jsonAdd;
  }
 
 // ---- Delete ----
@@ -204,9 +204,6 @@ export function buildArray(filePath) {
      }
      return -1;
  }
- function isEqual(list, label, weight){
-    return list.label===label && list.weight===weight;
- }
 
 /**
  * Remove all elements from a specific weight
@@ -216,19 +213,7 @@ export function buildArray(filePath) {
  */
  export function removeAll(list, weight) {
     let initialLength = list.length;
-    removeOne(list,0,weight)
+    removeEach(list,0,weight)
     return initialLength - list.length;
  }
- function removeOne(list, actualindex, weight){
-    for(let i=actualindex; i<list.length; i++){
-        if(isEqualWeight(list[i], weight)){
-           list.splice(i,1);
-           if(i!=list.length){
-               removeOne(list,i,weight);
-           }        
-        }
-    }
-}
-function isEqualWeight(list, weight){
-    return list.weight === weight;
- }
+ 
