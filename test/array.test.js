@@ -151,7 +151,7 @@ describe("Array list", () => {
 
   describe("Sort an array based on weight value and at weight egual sort on label", () => {
     it("should sort the full array", () => {
-      expect(arrayList.sortOnWeight(arrayFixture)).toEqual([
+      expect(arrayList.sortOnWeightAndLabel(arrayFixture)).toEqual([
         { label: "two", weight: 1 },
         { label: "three", weight: 11 },
         { label: "six", weight: 18 },
@@ -163,7 +163,7 @@ describe("Array list", () => {
 
     it("should sort a two elements array", () => {
       expect(
-        arrayList.sortOnWeight([
+        arrayList.sortOnWeightAndLabel([
           { label: "two", weight: 1 },
           { label: "four", weight: 1 },
         ])
@@ -174,13 +174,13 @@ describe("Array list", () => {
     });
 
     it("should sort an array with one element", () => {
-      expect(arrayList.sortOnWeight([{ label: "two", weight: 30 }])).toEqual([
+      expect(arrayList.sortOnWeightAndLabel([{ label: "two", weight: 30 }])).toEqual([
         { label: "two", weight: 30 },
       ]);
     });
 
     it("should sort an empty array", () => {
-      expect(arrayList.sortOnWeight([])).toEqual([]);
+      expect(arrayList.sortOnWeightAndLabel([])).toEqual([]);
     });
   });
 
