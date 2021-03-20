@@ -154,7 +154,7 @@ describe("Array list", () => {
     it("should sort the full array", () => {
       arrayList.sortOnWeightAndLabel(arrayFixture);
 
-      expect(arrayList).toEqual([
+      expect(arrayFixture).toEqual([
         { label: "two", weight: 1 },
         { label: "three", weight: 11 },
         { label: "six", weight: 18 },
@@ -169,7 +169,7 @@ describe("Array list", () => {
         { label: "two", weight: 1 },
         { label: "four", weight: 1 },
       ];
-      arrayList.sortOnsortOnWeightAndLabelWeight(twoElemArray);
+      arrayList.sortOnWeightAndLabel(twoElemArray);
 
       expect(twoElemArray).toEqual([
         { label: "four", weight: 1 },
@@ -188,42 +188,42 @@ describe("Array list", () => {
   describe("Insert a new element at first position in the array", () => {
     it("should insert the new element at first position", () => {
       arrayList.insertFirst(arrayFixture, "five", 5);
-      expect(arrayList[0]).toEqual({ label: "five", weight: 5 });
+      expect(arrayFixture[0]).toEqual({ label: "five", weight: 5 });
     });
 
     it("should change the length of the array", () => {
-      const lengthBefore = arrayList.length;
+      const lengthBefore = arrarrayFixtureayList.length;
       arrayList.insertFirst(arrayFixture, "five", 5);
-      expect(arrayList.length).toEqual(lengthBefore + 1);
+      expect(arrayFixture.length).toEqual(lengthBefore + 1);
     });
   });
 
   describe("Insert a new element at last position in the array", () => {
     it("should insert the new element at last position", () => {
       arrayList.insertEnd(arrayFixture, "five", 5);
-      expect(arrayList[arrayList.length - 1]).toEqual({
+      expect(arrayFixture[arrayFixture.length - 1]).toEqual({
         label: "five",
         weight: 5,
       });
     });
 
     it("should change the length of the array", () => {
-      const lengthBefore = arrayList.length;
+      const lengthBefore = arrayFixture.length;
       arrayList.insertEnd(arrayFixture, "five", 5);
-      expect(arrayList.length).toEqual(lengthBefore + 1);
+      expect(arrayFixture.length).toEqual(lengthBefore + 1);
     });
   });
 
   describe("Insert a new element at nth position in the array", () => {
     it("should insert the new element at the nth position", () => {
       arrayList.insertNth(arrayFixture, "five", 5, 3);
-      expect(arrayList[2]).toEqual({ label: "five", weight: 5 });
+      expect(arrayFixture[2]).toEqual({ label: "five", weight: 5 });
     });
 
     it("should change the length of the array", () => {
-      const lengthBefore = arrayList.length;
+      const lengthBefore = arrayFixture.length;
       arrayList.insertNth(arrayFixture, "five", 5, 3);
-      expect(arrayList.length).toEqual(lengthBefore + 1);
+      expect(arrayFixture.length).toEqual(lengthBefore + 1);
     });
   });
 
@@ -237,9 +237,9 @@ describe("Array list", () => {
     });
 
     it("should change the length of the array", () => {
-      const lengthBefore = arrayList.length;
+      const lengthBefore = arrayFixture.length;
       arrayList.removeFirst(arrayFixture, "four", 30);
-      expect(arrayList.length).toEqual(lengthBefore - 1);
+      expect(arrayFixture.length).toEqual(lengthBefore - 1);
     });
   });
 
