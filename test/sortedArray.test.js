@@ -59,12 +59,12 @@ describe("Sorted array list", () => {
     it("should sort the full array", () => {
       arrayService.sortOnWeight(arrayFixture);
       
-      expect(arrayService.sortOnWeight(arrayFixture)).toEqual([
+      expect(arrayFixture).toEqual([
         { label: "two", weight: 1 },
         { label: "three", weight: 11 },
         { label: "six", weight: 18 },
-        { label: "one", weight: 23 },
         { label: "ten", weight: 23 },
+        { label: "one", weight: 23 },
         { label: "four", weight: 30 },
       ]);
     });
@@ -82,23 +82,23 @@ describe("Sorted array list", () => {
       const emptyArray = [];
       arrayService.sortOnWeight(emptyArray);
 
-      expect(arrayService.sortOnWeight(emptyArray)).toEqual([]);
+      expect(emptyArray).toEqual([]);
     });
   });
 
   describe("Insert a new element in the array", () => {
     it("should insert the new element at first position", () => {
-      arrayService.insertFirst(arrayFixture, "zero", 0);
+      arrayService.insert(arrayFixture, "zero", 0);
       expect(arrayFixture[0]).toEqual({ label: "zero", weight: 0 });
     });
 
     it("should insert the new element at last position", () => {
-      arrayService.insertLast(arrayFixture, "fifty", 50);
+      arrayService.insert(arrayFixture, "fifty", 50);
       expect(arrayFixture[arrayFixture.length - 1]).toEqual({ label: "fifty", weight: 50 });
     });
 
     it("should insert the new element at the nth position", () => {
-      arrayService.insert(arrayFixture, "seven", 19, 4);
+      arrayService.insert(arrayFixture, "seven", 19);
       expect(arrayFixture[3]).toEqual({ label: "seven", weight: 19 });
     });
 

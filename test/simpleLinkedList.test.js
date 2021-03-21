@@ -182,7 +182,7 @@ describe("Simple linked list", () => {
     });
 
     it("should sort a list with one element", () => {
-      const list = [{ label: "two", weight: 30, next: null }];
+      const list = [{ value: { label: "two", weight: 30 }, next: null }];
       linkedListService.sortOnWeight(list);
       expect(list).toEqual([
         { value: { label: "two", weight: 30 }, next: null },
@@ -249,7 +249,7 @@ describe("Simple linked list", () => {
     it("should insert the new element in the list", () => {
       linkedListService.insert(simpleLinkedList, "five", 5);
 
-      expect(simpleLinkedList.head.equals).toEqual({ value: { label: "five", weight: 5 }, next: firstElement });
+      expect(simpleLinkedList.head).toEqual({ value: { label: "five", weight: 5 }, next: firstElement });
     });
 
     it("should change the length of the list", () => {
@@ -329,7 +329,7 @@ describe("Simple linked list", () => {
 
   describe("Remove the nth element", () => {
     it("should return the new list size", () => {
-      expect(linkedListService.removeNth(simpleLinkedList), 2).toEqual(5);
+      expect(linkedListService.removeNth(simpleLinkedList, 2)).toEqual(5);
     });
 
     it("should return 0 if the list is empty", () => {

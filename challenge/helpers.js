@@ -5,7 +5,9 @@ export function isEqual(list, label, weight){
 export function isEqualWeight(element, weight){
     return element.weight === weight;
 }
-
+export function isEqualLabel(element, label){
+    return element.label === label;
+}
 export function removeEach(list, actualindex, weight){
     for(let i=actualindex; i<list.length; i++){
         if(isEqualWeight(list[i], weight)){
@@ -14,5 +16,11 @@ export function removeEach(list, actualindex, weight){
                removeEach(list,i,weight);
            }        
         }
+    }
+}
+export function createNode(enterLabel = null, enterWeight = null){
+    return { 
+        value: { label: enterLabel, weight: enterWeight, },
+        next: null,
     }
 }

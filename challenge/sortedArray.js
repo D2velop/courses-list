@@ -59,16 +59,13 @@ export function buildArray(filePath) {
  * @param {String} label
  * @param {Number} weight
  */
- export function insert(list, label, weight, position) {
+ export function insert(list, label, weight) {
+     
     let itemAdd=`{ "label":"${label}", "weight": ${weight} }`;
     let jsonAdd = JSON.parse(itemAdd);
-    let initialLength = list.length;
-    
-    for(let i = initialLength; i > 0; i--){
-        list[i] = list[i-1];
-    }
-    list[position-1] = jsonAdd;
- }
+    list.push(jsonAdd);
+    sortOnWeight(list);
+}
  
  export function insertFirst(list, label, weight){
      insert(list, label, weight, 1);
