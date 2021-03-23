@@ -199,7 +199,7 @@ describe("Simple linked list", () => {
       });
     });
 
-    it("should change the length of the array", () => {
+    it("should change the length of the list", () => {
       const lengthBefore = simpleLinkedList.length;
       linkedListService.insertHead(simpleLinkedList, "five", 5);
       expect(simpleLinkedList.length).toEqual(lengthBefore + 1);
@@ -242,13 +242,8 @@ describe("Simple linked list", () => {
   describe("Insert a new element in the list", () => {
     it("should insert the new element in the list", () => {
       linkedListService.insert(simpleLinkedList, "five", 5);
-      success =
-        simpleLinkedList.head ===
-          { value: { label: "five", weight: 5 }, next: firstElement } ||
-        simpleLinkedList.tail ===
-          { value: { label: "five", weight: 5 }, next: null };
 
-      expect(success).toEqual(true);
+      expect(simpleLinkedList.head.equals).toEqual({ value: { label: "five", weight: 5 }, next: firstElement });
     });
 
     it("should change the length of the list", () => {
