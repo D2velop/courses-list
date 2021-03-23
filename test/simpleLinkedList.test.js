@@ -54,9 +54,9 @@ describe("Simple linked list", () => {
 
   describe("search one from label", () => {
     it("should return an existing element", () => {
-      expect(linkedListService.searchOneFromLabel(simpleLinkedList, "two")).toEqual(
-        secondElement
-      );
+      expect(
+        linkedListService.searchOneFromLabel(simpleLinkedList, "two")
+      ).toEqual(secondElement);
     });
 
     it("should return null if no element was found", () => {
@@ -68,9 +68,9 @@ describe("Simple linked list", () => {
 
   describe("search nth from weight", () => {
     it("should return an existing element", () => {
-      expect(linkedListService.searchNthFromWeight(simpleLinkedList, 23, 2)).toEqual(
-        lastElement
-      );
+      expect(
+        linkedListService.searchNthFromWeight(simpleLinkedList, 23, 2)
+      ).toEqual(lastElement);
     });
 
     it("should return null if not enough elements", () => {
@@ -80,44 +80,49 @@ describe("Simple linked list", () => {
     });
 
     it("should return null if element does not exist", () => {
-      expect(linkedListService.searchNthFromWeight(simpleLinkedList, 0, 1)).toBeNull();
+      expect(
+        linkedListService.searchNthFromWeight(simpleLinkedList, 0, 1)
+      ).toBeNull();
     });
   });
 
   describe("search last from weight", () => {
     it("should return the second(last) occurence of weight 23", () => {
-      expect(linkedListService.searchLastFromWeight(simpleLinkedList, 23)).toEqual(
-        lastElement
-      );
+      expect(
+        linkedListService.searchLastFromWeight(simpleLinkedList, 23)
+      ).toEqual(lastElement);
     });
 
     it("should return the only occurence of weight 1", () => {
-      expect(linkedListService.searchLastFromWeight(simpleLinkedList, 1)).toEqual(
-        secondElement
-      );
+      expect(
+        linkedListService.searchLastFromWeight(simpleLinkedList, 1)
+      ).toEqual(secondElement);
     });
 
     it("should return null if no element was found", () => {
-      expect(linkedListService.searchLastFromWeight(simpleLinkedList, 42)).toBeNull();
+      expect(
+        linkedListService.searchLastFromWeight(simpleLinkedList, 42)
+      ).toBeNull();
     });
   });
 
   describe("search all from weight", () => {
     it("should return all occurences of weight 23", () => {
-      expect(linkedListService.searchAllFromWeight(simpleLinkedList, 23)).toEqual([
-        firstElement,
-        lastElement,
-      ]);
+      expect(
+        linkedListService.searchAllFromWeight(simpleLinkedList, 23)
+      ).toEqual([firstElement, lastElement]);
     });
 
     it("should return the only occurence of weight 1", () => {
-      expect(linkedListService.searchAllFromWeight(simpleLinkedList, 1)).toEqual([
-        secondElement,
-      ]);
+      expect(
+        linkedListService.searchAllFromWeight(simpleLinkedList, 1)
+      ).toEqual([secondElement]);
     });
 
     it("should return an empty array if no element was found", () => {
-      expect(linkedListService.searchAllFromWeight(simpleLinkedList, 42)).toEqual([]);
+      expect(
+        linkedListService.searchAllFromWeight(simpleLinkedList, 42)
+      ).toEqual([]);
     });
   });
 
@@ -129,17 +134,43 @@ describe("Simple linked list", () => {
     });
 
     it("should return null if no element was found", () => {
-      expect(linkedListService.searchNthElement(simpleLinkedList, 42)).toBeNull();
+      expect(
+        linkedListService.searchNthElement(simpleLinkedList, 42)
+      ).toBeNull();
     });
   });
 
   describe("Sort a list based on weight value", () => {
     it("should sort the full list", () => {
-      const expectedList = {
-        head: secondElement,
-        tail: thirdElement,
-        length: 6,
+      const lastElement = {
+        value: { label: "four", weight: 30 },
+        next: null,
       };
+      const fiftElement = {
+        value: { label: "ten", weight: 23 },
+        next: lastElement,
+      };
+      const fourElement = {
+        value: { label: "one", weight: 23 },
+        next: fiftElement,
+      };
+      const thirdElement = {
+        value: { label: "six", weight: 18 },
+        next: fourElement,
+      };
+      const secondElement = {
+        value: { label: "three", weight: 11 },
+        next: thirdElement,
+      };
+      const firstElement = {
+        value: { label: "two", weight: 1 },
+        next: secondElement,
+      };
+
+      const expectedList = {};
+      expectedList.head = firstElement;
+      expectedList.tail = lastElement;
+      expectedList.length = 6;
       linkedListService.sortOnWeight(simpleLinkedList);
       expect(simpleLinkedList).toEqual(expectedList);
     });
@@ -147,7 +178,9 @@ describe("Simple linked list", () => {
     it("should sort a list with one element", () => {
       const list = [{ label: "two", weight: 30, next: null }];
       linkedListService.sortOnWeight(list);
-      expect(list).toEqual([{ label: "two", weight: 30, next: null }]);
+      expect(list).toEqual([
+        { value: { label: "two", weight: 30 }, next: null },
+      ]);
     });
 
     it("should sort an empty list", () => {
@@ -161,8 +194,7 @@ describe("Simple linked list", () => {
     it("should insert the new element at first position", () => {
       linkedListService.insertHead(simpleLinkedList, "five", 5);
       expect(simpleLinkedList.head).toEqual({
-        label: "five",
-        weight: 5,
+        value: { label: "five", weight: 5 },
         next: firstElement,
       });
     });
@@ -178,8 +210,7 @@ describe("Simple linked list", () => {
     it("should insert the new element at last position", () => {
       linkedListService.insertTail(simpleLinkedList, "five", 5);
       expect(simpleLinkedList.tail).toEqual({
-        label: "five",
-        weight: 5,
+        value: { label: "five", weight: 5 },
         next: null,
       });
     });
@@ -196,8 +227,7 @@ describe("Simple linked list", () => {
       linkedListService.insertNth(simpleLinkedList, "five", 5, 2);
       const insertedElement = simpleLinkedList.head.next;
       expect(insertedElement).toEqual({
-        label: "five",
-        weight: 5,
+        value: { label: "five", weight: 5 },
         next: secondElement,
       });
     });
@@ -214,8 +244,9 @@ describe("Simple linked list", () => {
       linkedListService.insert(simpleLinkedList, "five", 5);
       success =
         simpleLinkedList.head ===
-          { value: "five", weight: 5, next: firstElement } ||
-        simpleLinkedList.tail === { value: "five", weight: 5, next: null };
+          { value: { label: "five", weight: 5 }, next: firstElement } ||
+        simpleLinkedList.tail ===
+          { value: { label: "five", weight: 5 }, next: null };
 
       expect(success).toEqual(true);
     });
@@ -255,7 +286,9 @@ describe("Simple linked list", () => {
     });
 
     it("should return 0 if the list is empty", () => {
-      expect(linkedListService.removeHead({ head: null, length: 0 })).toEqual(0);
+      expect(linkedListService.removeHead({ head: null, length: 0 })).toEqual(
+        0
+      );
     });
 
     it("should remove element", () => {
@@ -276,7 +309,9 @@ describe("Simple linked list", () => {
     });
 
     it("should return 0 if the list is empty", () => {
-      expect(linkedListService.removeTail({ tail: null, length: 0 })).toEqual(0);
+      expect(linkedListService.removeTail({ tail: null, length: 0 })).toEqual(
+        0
+      );
     });
 
     it("should remove element", () => {
@@ -297,7 +332,9 @@ describe("Simple linked list", () => {
     });
 
     it("should return 0 if the list is empty", () => {
-      expect(linkedListService.removeNth({ head: null, length: 0 }, 2)).toEqual(0);
+      expect(linkedListService.removeNth({ head: null, length: 0 }, 2)).toEqual(
+        0
+      );
     });
 
     it("should remove element", () => {

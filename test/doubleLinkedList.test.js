@@ -73,8 +73,7 @@ describe("Double linked list", () => {
     it("should insert the new element at first position", () => {
       linkedListService.insertHead(doubleLinkedList, "five", 5);
       expect(doubleLinkedList.head).toEqual({
-        label: "five",
-        weight: 5,
+        value: { label: "five", weight: 5 },
         next: firstElement,
         prev: null,
       });
@@ -91,8 +90,7 @@ describe("Double linked list", () => {
     it("should insert the new element at last position", () => {
       linkedListService.insertTail(doubleLinkedList, "five", 5);
       expect(doubleLinkedList.tail).toEqual({
-        label: "five",
-        weight: 5,
+        value: { label: "five", weight: 5 },
         prev: lastElement,
         next: null,
       });
@@ -110,16 +108,14 @@ describe("Double linked list", () => {
       linkedListService.insertNth(doubleLinkedList, "five", 5, 2);
 
       const expectedInsertElement = {
-        label: "five",
-        weight: 5,
+        value: { label: "five", weight: 5 },
         next: secondElement,
         prev: firstElement,
       };
       const insertedElement = doubleLinkedList.head.next;
 
       expect(insertedElement).toEqual({
-        label: "five",
-        weight: 5,
+        value: { label: "five", weight: 5 },
         next: secondElement,
         prev: firstElement,
       });

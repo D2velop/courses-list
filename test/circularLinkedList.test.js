@@ -69,8 +69,7 @@ describe("Circular linked list", () => {
     it("should insert the new element at first position", () => {
       linkedListService.insertHead(circularLinkedList, "five", 5);
       const insertedElement = {
-        label: "five",
-        weight: 5,
+        value: { label: "five", weight: 5 },
         next: firstElement,
       };
 
@@ -89,8 +88,7 @@ describe("Circular linked list", () => {
     it("should insert the new element at last position", () => {
       linkedListService.insertTail(circularLinkedList, "five", 5);
       expect(circularLinkedList.tail).toEqual({
-        label: "five",
-        weight: 5,
+        value: { label: "five", weight: 5 },
         next: circularLinkedList.head,
       });
     });
