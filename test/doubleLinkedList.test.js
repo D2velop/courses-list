@@ -13,33 +13,46 @@ describe("Double linked list", () => {
     lastElement = {
       value: { label: "one", weight: 23 },
       next: null,
-      prev: fiftElement,
+      prev: null,
     };
     fiftElement = {
       value: { label: "three", weight: 11 },
-      next: lastElement,
-      prev: fourthElement,
+      next: null,
+      prev: null,
     };
     fourthElement = {
       value: { label: "six", weight: 18 },
-      next: fiftElement,
-      prev: thirdElement,
+      next: null,
+      prev: null,
     };
     thirdElement = {
       value: { label: "four", weight: 30 },
-      next: fourthElement,
-      prev: secondElement,
+      next: null,
+      prev: null,
     };
     secondElement = {
       value: { label: "two", weight: 1 },
-      next: thirdElement,
-      prev: firstElement,
+      next: null,
+      prev: null,
     };
     firstElement = {
       value: { label: "ten", weight: 23 },
-      next: secondElement,
+      next: null,
       prev: null,
     };
+
+    firstElement.prev = null;
+    firstElement.next = secondElement;
+    secondElement.prev = firstElement;
+    secondElement.next = thirdElement;
+    thirdElement.prev = secondElement;
+    thirdElement.next = fourthElement;
+    fourthElement.prev = thirdElement;
+    fourthElement.next = fiftElement;
+    fiftElement.prev = fourthElement;
+    fiftElement.next = lastElement;
+    lastElement.prev = fiftElement;
+    lastElement.next = null;
 
     doubleLinkedList.head = firstElement;
     doubleLinkedList.tail = lastElement;
@@ -65,7 +78,7 @@ describe("Double linked list", () => {
       });
 
       expect(builtList.head.prev).toEqual(null);
-      expect(builtList.head.next.value).toEqual(82);
+      expect(builtList.head.next.value).toEqual({label: "six", weight: 82});
     });
   });
 

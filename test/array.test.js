@@ -1,13 +1,14 @@
 import * as arrayService from "../challenge/array";
 
 describe("Array list", () => {
-  const firstElement = { label: "ten", weight: 23 };
-  const secondElement = { label: "two", weight: 1 };
-  const lastElement = { label: "one", weight: 23 };
-
+  let firstElement, secondElement, lastElement;
   let arrayFixture;
 
   beforeEach(() => {
+    firstElement = { label: "ten", weight: 23 };
+    secondElement = { label: "two", weight: 1 };
+    lastElement = { label: "one", weight: 23 };
+
     arrayFixture = [
       firstElement,
       secondElement,
@@ -261,9 +262,8 @@ describe("Array list", () => {
     });
 
     it("should change the length of the array", () => {
-      const lengthBefore = arrayFixture.length;
-      const nbRemoved = arrayService.removeAll(arrayFixture, 23);
-      expect(arrayFixture.length).toEqual(lengthBefore - nbRemoved);
+      arrayService.removeAll(arrayFixture, 23);
+      expect(arrayFixture.length).toEqual(4);
     });
   });
 });

@@ -8,25 +8,31 @@ describe("Simple linked list", () => {
     lastElement = { value: { label: "one", weight: 23 }, next: null };
     fiftElement = {
       value: { label: "three", weight: 11 },
-      next: lastElement,
+      next: null,
     };
     const fourElement = {
       value: { label: "six", weight: 18 },
-      next: fiftElement,
+      next: null,
     };
     thirdElement = {
       value: { label: "four", weight: 30 },
-      next: fourElement,
+      next: null,
     };
     secondElement = {
       value: { label: "two", weight: 1 },
-      next: thirdElement,
+      next: null,
     };
     firstElement = {
       value: { label: "ten", weight: 23 },
-      next: secondElement,
+      next: null,
     };
 
+    firstElement.next = secondElement;
+    secondElement.next = thirdElement;
+    thirdElement.next = fourElement;
+    fourElement.next = fiftElement;
+    fiftElement.next = lastElement;
+    
     simpleLinkedList.head = firstElement;
     simpleLinkedList.tail = lastElement;
     simpleLinkedList.length = 6;

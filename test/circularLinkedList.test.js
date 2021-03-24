@@ -7,33 +7,40 @@ describe("Circular linked list", () => {
   beforeEach(() => {
     lastElement = {
       value: { label: "one", weight: 23 },
-      next: firstElement,
+      next: null,
     };
 
     fiftElement = {
       value: { label: "three", weight: 11 },
-      next: lastElement,
+      next: null,
     };
 
     const fourElement = {
       value: { label: "six", weight: 18 },
-      next: fiftElement,
+      next: null,
     };
 
     thirdElement = {
       value: { label: "four", weight: 30 },
-      next: fourElement,
+      next: null,
     };
 
     secondElement = {
       value: { label: "two", weight: 1 },
-      next: thirdElement,
+      next: null,
     };
 
     firstElement = {
       value: { label: "ten", weight: 23 },
-      next: secondElement,
+      next: null,
     };
+
+    firstElement.next = secondElement;
+    secondElement.next = thirdElement;
+    thirdElement.next = fourElement;
+    fourElement.next = fiftElement;
+    fiftElement.next = lastElement;
+    lastElement.next = firstElement;
 
     circularLinkedList.head = firstElement;
     circularLinkedList.tail = lastElement;
@@ -61,7 +68,10 @@ describe("Circular linked list", () => {
 
     it("should build a circular list", () => {
       const builtList = linkedListService.buildLinkedList("./data/1K.json");
-      expect(builtList.tail.next).toEqual(firstElement);
+      expect(builtList.tail.next.value).toEqual({
+        weight: 32,
+        label: "nine",
+      });
     });
   });
 

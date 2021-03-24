@@ -1,13 +1,14 @@
 import * as arrayService from "../challenge/sortedArray";
 
 describe("Sorted array list", () => {
-  const firstElement = { label: "two", weight: 1 }
-  const secondElement = { label: "three", weight: 11 };
-  const lastElement = { label: "four", weight: 30 };
-
+  let firstElement, secondElement, lastElement;
   let arrayFixture;
 
   beforeEach(() => {
+    firstElement = { label: "two", weight: 1 }
+    secondElement = { label: "three", weight: 11 };
+    lastElement = { label: "four", weight: 30 };
+
     arrayFixture = [
       firstElement,
       secondElement,
@@ -72,7 +73,7 @@ describe("Sorted array list", () => {
       const oneElemArray = [{ label: "two", weight: 30 }];
       arrayService.sortOnWeight(oneElemArray);
 
-      expect().toEqual([
+      expect(oneElemArray).toEqual([
         { label: "two", weight: 30 },
       ]);
     });
@@ -136,9 +137,8 @@ describe("Sorted array list", () => {
     });
 
     it("should change the length of the array", () => {
-      const lengthBefore = arrayFixture.length;
-      const nbRemoved = arrayService.removeAll(arrayFixture, 23);
-      expect(arrayFixture.length).toEqual(lengthBefore - nbRemoved);
+      arrayService.removeAll(arrayFixture, 23);
+      expect(arrayFixture.length).toEqual(4);
     });
   });
 });
