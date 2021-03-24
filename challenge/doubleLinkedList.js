@@ -1,3 +1,4 @@
+import fs from 'fs';
 "use strict";
 
 // ---- INIT ----
@@ -7,7 +8,11 @@
  * @param {String} filePath
  * @returns {Object} the newly built linked list reference
  */
- export function buildArray(filePath) {}
+ export function buildArray(filePath) {
+    filePath = fs.readFileSync('./data/1K.json');
+    const data = JSON.parse(filePath);
+    return data
+ }
 
 // ---- INSERT ----
 

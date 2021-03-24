@@ -1,3 +1,5 @@
+import fs from 'fs'
+import LinkedList from 'linked-list'
 "use strict";
 
 // ---- INIT ----
@@ -7,7 +9,14 @@
  * @param {String} filePath
  * @returns {Object} the newly built linked list reference
  */
-export function buildLinkedList(filePath) {}
+export function buildLinkedList(filePath) {
+    filePath = fs.readFileSync("./data/1K.json");
+    const data = JSON.parse(filePath);
+    const item = new LinkedList();
+    item.append(data);
+    console.log(item);
+    return item;
+}
 
 // ---- Search ----
 

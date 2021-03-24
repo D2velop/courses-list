@@ -87,23 +87,23 @@ describe("Sorted array list", () => {
 
   describe("Insert a new element in the array", () => {
     it("should insert the new element at first position", () => {
-      arrayService.insert(arrayFixture, "zero", 0);
+      arrayService.insert(arrayFixture, "zero", 0, 1);
       expect(arrayFixture[0]).toEqual({ label: "zero", weight: 0 });
     });
 
     it("should insert the new element at last position", () => {
-      arrayService.insert(arrayFixture, "fifty", 50);
+      arrayService.insert(arrayFixture, "fifty", 50, arrayFixture.length+1);
       expect(arrayFixture[arrayFixture.length - 1]).toEqual({ label: "fifty", weight: 50 });
     });
 
     it("should insert the new element at the nth position", () => {
-      arrayService.insert(arrayFixture, "seven", 19);
+      arrayService.insert(arrayFixture, "seven", 19, 4);
       expect(arrayFixture[3]).toEqual({ label: "seven", weight: 19 });
     });
 
     it("should change the length of the array", () => {
       const lengthBefore = arrayFixture.length;
-      arrayService.insertFirst(arrayFixture, "zero", 0);
+      arrayService.insert(arrayFixture, "zero", 0);
       expect(arrayFixture.length).toEqual(lengthBefore + 1);
     });
   });
