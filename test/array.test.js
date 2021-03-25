@@ -145,7 +145,7 @@ describe("Array list", () => {
 
     it("should sort an empty array", () => {
       const emptyArray = [];
-      arrayService.sortOnWeight(emptyArray)
+      arrayService.sortOnWeight(emptyArray);
 
       expect(emptyArray).toEqual([]);
     });
@@ -180,7 +180,7 @@ describe("Array list", () => {
 
     it("should sort an empty array", () => {
       const emptyArray = [];
-      arrayService.sortOnWeightAndLabel(emptyArray)
+      arrayService.sortOnWeightAndLabel(emptyArray);
 
       expect(emptyArray).toEqual([]);
     });
@@ -234,7 +234,9 @@ describe("Array list", () => {
     });
 
     it("should return -1 if no element was removed", () => {
-      expect(arrayService.removeFirst(arrayFixture, "not exist", 99)).toEqual(-1);
+      expect(arrayService.removeFirst(arrayFixture, "not exist", 99)).toEqual(
+        -1
+      );
     });
 
     it("should change the length of the array", () => {
@@ -255,10 +257,12 @@ describe("Array list", () => {
 
     it("should remove targeted element", () => {
       const weightToRemove = 23;
-      arrayService.removeAll(arrayFixture, weightToRemove)
-      expect(arrayFixture.findIndex((elem) => {
-        return elem.weight === weightToRemove
-      })).toEqual(-1);
+      arrayService.removeAll(arrayFixture, weightToRemove);
+      expect(
+        arrayFixture.findIndex((elem) => {
+          return elem.weight === weightToRemove;
+        })
+      ).toEqual(-1);
     });
 
     it("should change the length of the array", () => {
