@@ -57,7 +57,83 @@ export function searchNthElement(list, position) {}
  * Sort an array based on weight value
  * @param {Object} list
  */
-export function sortOnWeight(list) {}
+export function sortOnWeight(list) {
+  const sortedList = mergeSort(list);
+  list.head = sortedList.head;
+  list.tail = sortedList.tail;
+  list.length = sortedList.length;
+}
+
+function mergeSort(list) {
+  if (list.length <= 1) {
+    return list;
+  }
+
+  const left = { head: null, tail: null, length: 0 };
+  const right = { head: null, tail: null, length: 0 };
+
+  let currentNode = list.head;
+  let index = 0;
+
+  while (currentNode !== null) {
+    if (index < list.length / 2) {
+      addTail(left, currentNode);
+    } else {
+      addTail(right, currentNode);
+    }
+    currentNode = currentNode.next;
+    index++;
+  }
+
+  const sortedLeft = mergeSort(left);
+  const sortedRight = mergeSort(right);
+  return merge(sortedLeft, sortedRight);
+}
+
+function merge(left, right) {
+  const result = { head: null, tail: null, length: 0 };
+
+  while (left.length > 0 && right.length > 0) {
+    if (left.head.value.weight <= right.head.value.weight) {
+      addTail(result, pop(left));
+    } else {
+      addTail(result, pop(right));
+    }
+  }
+
+  while (left.length > 0) {
+    addTail(result, pop(left));
+  }
+
+  while (right.length > 0) {
+    addTail(result, pop(right));
+  }
+
+  return result;
+}
+
+function addTail(list, node) {
+  const nodeCopy = Object.assign({}, node, { next: null });
+  if (list.head === null) {
+    list.head = nodeCopy;
+  }
+
+  if (list.tail !== null) {
+    list.tail.next = nodeCopy;
+  }
+
+  list.tail = nodeCopy;
+  list.length++;
+}
+
+function pop(list) {
+  const newHead = list.head.next;
+  const headCopy = Object.assign({}, list.head, { next: null });
+
+  list.head = newHead;
+  list.length--;
+  return headCopy;
+}
 
 // ---- INSERT ----
 
