@@ -148,12 +148,13 @@ describe("Simple linked list", () => {
 
   describe("Sort a list based on weight value", () => {
     it("should sort the full list", () => {
+      simpleLinkedList.head.value.weight = 24;
       const lastElement = {
         value: { label: "four", weight: 30 },
         next: null,
       };
       const fiftElement = {
-        value: { label: "ten", weight: 23 },
+        value: { label: "ten", weight: 24 },
         next: lastElement,
       };
       const fourElement = {
