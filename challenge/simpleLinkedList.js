@@ -123,65 +123,83 @@ export function searchNthElement(list, position) {
  * @param {Object} list
  */
 
-export function sortOnWeight(list) {
-    
-    if(list.length === 0 ){
-        return list;
+ export function sortOnWeight(list) {
+    const sortedList = mergeSort(list);
+    list.head = sortedList.head;
+    list.tail = sortedList.tail;
+    list.length = sortedList.length;
+  }
+  
+  function mergeSort(list) {
+    if (list.length <= 1) {
+      return list;
     }
-    if(list.length === 1){
-        return list;
+  
+    const left = { head: null, tail: null, length: 0 };
+    const right = { head: null, tail: null, length: 0 };
+  
+    let currentNode = list.head;
+    let index = 0;
+  
+    while (currentNode !== null) {
+      if (index < list.length / 2) {
+        addTail(left, currentNode);
+      } else {
+        addTail(right, currentNode);
+      }
+      currentNode = currentNode.next;
+      index++;
     }
-    //new list = list 
-    //////////INIT//////////
-    let insert = list.head.next;
-    let head = list.head; 
-    let tail = list.tail;
-    if(head.value.weight > tail.value.weight){
-        let temp = head;
-        head = tail;
-        tail = temp;
+  
+    const sortedLeft = mergeSort(left);
+    const sortedRight = mergeSort(right);
+    return merge(sortedLeft, sortedRight);
+  }
+  
+  function merge(left, right) {
+    const result = { head: null, tail: null, length: 0 };
+  
+    while (left.length > 0 && right.length > 0) {
+      if (left.head.value.weight <= right.head.value.weight) {
+        addTail(result, pop(left));
+      } else {
+        addTail(result, pop(right));
+      }
     }
-    tail.next = null;
-    head.next = tail;
-    let newlist = {}; 
-    newlist.head = head;
-    newlist.tail = tail;
-   
-    insertSort(insert, newlist);
-    
-    return newlist;
-    
-}
-
-function insertSort(insert, newlist){
-    if(insert!==null){
-        let previous = newlist.head;
-        let current = previous.next;
-
-        if(insert.value.weight < newlist.head.value.weight){
-            insertHead(newlist, insert.value.label, insert.value.weight);
-            insert = insert.next;
-            insertSort(insert, newlist);
-        }
-        while(current !== null || (current.value.weight < insert.value.weight)){
-            previous = current;
-            current = current.next;
-        }
-        if(current === null){
-            insertTail(newlist,  insert.value.label, insert.value.weight);
-            insert = insert.next;
-            insertSort(insert, newlist);
-        }
-        let temp = insert;
-        temp.next = current;
-        previous.next = temp;
-        newlist.length ++;
-
-        insert = insert.next;
-        insertSort(insert, newlist);
+  
+    while (left.length > 0) {
+      addTail(result, pop(left));
     }
-
-}
+  
+    while (right.length > 0) {
+      addTail(result, pop(right));
+    }
+  
+    return result;
+  }
+  
+  function addTail(list, node) {
+    const nodeCopy = node;
+    if (list.head === null) {
+      list.head = nodeCopy;
+    }
+  
+    if (list.tail !== null) {
+      list.tail.next = nodeCopy;
+    }
+  
+    list.tail = nodeCopy;
+    list.length++;
+  }
+  
+  function pop(list) {
+    const newHead = list.head.next;
+    const headCopy = list.head;
+  
+    list.head = newHead;
+    list.length--;
+    return headCopy;
+  }
 // ---- INSERT ----
 
 /**
